@@ -177,7 +177,7 @@ class productModel
         move_uploaded_file($file_temp3, $uploaded_image3);
 
 
-        $sql = "INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`,`image2`,`image3`, `createdBy`, `createdDate`, `cateId`, `qty`, `trademark`,`faceshape`,`material`,`color`,`energyused`, `status`, `soldCount`) VALUES (NULL, '" . $product['name'] . "', " . $product['originalPrice'] . ", " . $product['promotionPrice'] . ", '" . $unique_image . "', '" . $unique_image2 . "', '" . $unique_image3 . "', " . $_SESSION['user_id'] . ", '" . date("y-m-d H:i:s") . "', " . $product['cateId'] . ", " . $product['qty'] . ", '" . $product['trademark'] . "', '" . $product['faceshape'] . "','" . $product['material'] . "', '" . $product['color'] . "','" . $product['energyused'] . "',1, 0)";
+        $sql = "INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`,`image2`,`image3`, `createdBy`, `createdDate`, `cateId`, `qty`, `trademark`,`faceshape`,`material`,`color`,`energyused`,`des`, `status`, `soldCount`) VALUES (NULL, '" . $product['name'] . "', " . $product['originalPrice'] . ", " . $product['promotionPrice'] . ", '" . $unique_image . "', '" . $unique_image2 . "', '" . $unique_image3 . "', " . $_SESSION['user_id'] . ", '" . date("y-m-d H:i:s") . "', " . $product['cateId'] . ", " . $product['qty'] . ", '" . $product['trademark'] . "', '" . $product['faceshape'] . "','" . $product['material'] . "', '" . $product['color'] . "' ,'" . $product['energyused'] . "','" . $product['des'] . "',1, 0)";
         $result = mysqli_query($db->con, $sql);
        
         return $result;
@@ -236,7 +236,7 @@ class productModel
         if (!empty($_FILES['image3']['name'])) {
             $sql .=  ", `image3` = '" . $unique_image3 . "'";
         }
-        $sql .= ", `cateId` = " . $_POST['cateId'] . ", `trademark` = '" . $_POST['trademark']  . ", `faceshape` = '" . $_POST['faceshape']  . ",`material` = '" . $_POST['material']  . ",`color` = '" . $_POST['color']  . ",`energyused` = '" . $_POST['energyused']  . " WHERE id = " . $_POST['id'] . "";
+        $sql .= ", `cateId` = " . $_POST['cateId'] . ", `trademark` = '" . $_POST['trademark']  . ", `faceshape` = '" . $_POST['faceshape']  . ",`material` = '" . $_POST['material']  . ",`color` = '" . $_POST['color']  . ",`energyused` = '" . $_POST['energyused']  . ", `des` = '" . $_POST['des'] . "' WHERE id = " . $_POST['id'] . "";
         $result = mysqli_query($db->con, $sql);
 
         return $result;

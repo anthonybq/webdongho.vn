@@ -47,6 +47,9 @@
                                 <label for="energyused">Năng lương sử dụng</label>
                                 <input type="text" id="energyused" name="energyused" required>
 
+                                <label for="des">Mô tả</label>
+                                <textarea name="des" id="des" cols="30" rows="10"></textarea>
+
 
 
                                 <input type="submit" value="Lưu">

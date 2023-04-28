@@ -29,18 +29,7 @@
                                     <?php }
                                     ?>
                                 </select>
-                                <label for="image">Hình ảnh 1</label>
-                                <p>
-                                    <img style="height: 300px;" src="<?= URL_ROOT . '/public/images/' . $data['product']['image'] ?>" alt="">
-                                </p>
-                                <label for="image">Hình ảnh 2</label>
-                                <p>
-                                    <img style="height: 300px;" src="<?= URL_ROOT . '/public/images/' . $data['product']['image2'] ?>" alt="">
-                                </p>
-                                <label for="image">Hình ảnh 3</label>
-                                <p>
-                                    <img style="height: 300px;" src="<?= URL_ROOT . '/public/images/' . $data['product']['image3'] ?>" alt="">
-                                </p>
+
                                 <label for="image">Chọn hình ảnh mới 1</label>
                                 <input type="file" id="image" name="image">
                                 <label for="image">Chọn hình ảnh mới 2</label>
@@ -65,6 +54,8 @@
                                 <input type="text" id="color" name="color" required value="<?= $data['product']['color'] ?>">
                                 <label for="energyused">Năng lượng sử dụng</label>
                                 <input type="text" id="energyused" name="energyused" required value="<?= $data['product']['energyused'] ?>">
+                                <label for="des">Mô tả</label>
+                                <textarea name="des" id="des" cols="30" rows="10"><?= $data['product']['des'] ?></textarea>
 
                                 <input type="submit" value="Lưu">
                                 <a href="<?= URL_ROOT . '/productManage' ?>" class="back">Trở về</a>
