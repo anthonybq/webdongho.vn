@@ -20,7 +20,7 @@
                                     </span>
                                 </form>
                             </div>
-                            <a href="<?= URL_ROOT . '/userManage/add' ?>" class="button" style="margin: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
+                            <a href="<?= URL_ROOT . '/productManage/add' ?>" class="button" style="margin: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
                         </div>
                         <h3>Danh sách sản phẩm</h3>
                         <div class="table-responsive">

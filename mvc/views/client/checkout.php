@@ -110,19 +110,42 @@
     <?php }  ?>
   </table>
   
-      <div class="login">
-        <form action="<?= URL_ROOT ?>/cart/check" class="login-container" method="post">
-          <p>
-            <input type="text" placeholder="Nhập mã giảm giá (nếu có)" name="code" required>
-            <?php foreach ($voucherList as $code => $description) { ?>
-              <label><?= $description ?></label>
-            <?php } ?>
-          </p>
-          <p class="<?= isset($data['cssClass']) ? $data['cssClass'] : "" ?>"><?= isset($data['message']) ? $data['message'] : "" ?></p>
-          <p><input type="submit" value="Áp dụng"></p>
-        </form>
-      </div>
 
+  <div class="login">
+    <form action="<?= URL_ROOT ?>/cart/check" class="login-container" method="post">
+      <!-- <input type="text" placeholder="Nhập mã giảm giá (nếu có)" name="code" required> -->
+      <p>
+        <?php
+          // Lớp model để lấy danh sách các mã giảm giá từ cơ sở dữ liệu
+          class VoucherModel {
+            public function getAll() {
+              $db = DB::getInstance();
+              $sql = "SELECT * FROM vouchers";
+              $result = mysqli_query($db->con, $sql);
+              return $result;
+            }
+          }
+
+          // Khởi tạo đối tượng voucherModel và lấy danh sách các mã giảm giá từ cơ sở dữ liệu
+          $voucherModel = new VoucherModel();
+          $voucherList = $voucherModel->getAll();
+        ?>
+        <?php foreach ($voucherList as $voucher) { ?>
+          <select name="code" style="font-size:x-large;">
+            <option value="" selected>Chọn mã giảm giá</option>
+            <?php foreach ($voucherList as $voucher) { ?>
+              <option value="<?= $voucher['code'] ?>">
+                Mã: <?= $voucher['code'] ?> - Giảm: <?= $voucher['percentDiscount'] ?>%
+              </option>
+            <?php } ?>
+          </select>
+          <br>
+        <?php } ?>
+      </p>
+      <p class="<?= isset($data['cssClass']) ? $data['cssClass'] : "" ?>"><?= isset($data['message']) ? $data['message'] : "" ?></p>
+      <p><input type="submit" value="Áp dụng"></p>
+    </form>
+  </div>
 
   <div class="payment">
     <?php
