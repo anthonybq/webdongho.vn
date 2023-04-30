@@ -6,18 +6,22 @@
 
     <div class="main-content">
         <header>
-            <div class="search-wrapper">
-                <form action="<?= URL_ROOT ?>/productManage/index" method="get">
-                    <input type="search" placeholder="Tìm kiếm" name="keyword">
-                </form>
-            </div>
         </header>
-
         <main>
             <section class="recent">
                 <div class="activity-grid">
                     <div class="activity-card">
-                        <a href="<?= URL_ROOT . '/productManage/add' ?>" class="button right"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
+                        <div>
+                            <div class="right">
+                                <form method="get" style="width:200px;">
+                                    <span style="position:relative;">
+                                        <input type="text" name="q" placeholder="Tìm kiếm..." style="padding-left:30px;">
+                                        <i class="fa fa-search" aria-hidden="true" style="position:absolute; left:10px; top:8px;"></i>
+                                    </span>
+                                </form>
+                            </div>
+                            <a href="<?= URL_ROOT . '/userManage/add' ?>" class="button" style="margin: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
+                        </div>
                         <h3>Danh sách sản phẩm</h3>
                         <div class="table-responsive">
                             <table>
@@ -35,6 +39,10 @@
                                     <?php
                                     $count = 0;
                                     foreach ($data['productList'] as $key => $value) {
+                                        // Ẩn tất cả sản phẩm ngoại trừ những sản phẩm có thông tin tìm kiếm
+                                        if(isset($_GET['q']) && (strpos($value['name'], $_GET['q']) === false && strpos($value['energyused'], $_GET['q']) === false)) {
+                                            continue;
+                                        }
                                     ?>
                                         <tr>
                                             <td><?= ++$count ?></td>

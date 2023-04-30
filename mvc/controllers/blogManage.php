@@ -2,21 +2,37 @@
 
 class blogManage extends ControllerBase
 {
+    // public function index($page = 1)
+    // {
+    //     if (isset($_SESSION['role']) && $_SESSION['role'] != 'Admin') {
+    //         $this->redirect("home");
+    //     }
+    //     $blog = $this->model("blogModel");
+    //     // $blogList = ($blog->getAll($page['page']))->fetch_all(MYSQLI_ASSOC);
+    //    $blogList = ($blog->getAll($page))->fetch_all(MYSQLI_ASSOC);
+    //     $countPaging = $blog->getCountPaging(8);
+    //     $this->view("admin/blog", [
+    //         "headTitle" => "Quản lý Blog",
+    //         "blogList" => $blogList,
+    //         'countPaging' => $countPaging
+    //     ]);
+    // }
+
     public function index($page = 1)
     {
-        if (isset($_SESSION['role']) && $_SESSION['role'] != 'Admin') {
-            $this->redirect("home");
-        }
-        $blog = $this->model("blogModel");
-        $blogList = ($blog->getAll($page['page']))->fetch_all(MYSQLI_ASSOC);
-        $countPaging = $blog->getCountPaging(8);
-
-        $this->view("admin/blog", [
-            "headTitle" => "Quản lý Blog",
-            "blogList" => $blogList,
-            'countPaging' => $countPaging
-        ]);
+    if (isset($_SESSION['role']) && $_SESSION['role'] != 'Admin') {
+        $this->redirect("home");
     }
+    $blog = $this->model("blogModel");
+    $blogList = $blog->getAll((int)$page)->fetch_all(MYSQLI_ASSOC);
+    $countPaging = $blog->getCountPaging(8);
+    $this->view("admin/blog", [
+        "headTitle" => "Quản lý Blog",
+        "blogList" => $blogList,
+        'countPaging' => $countPaging
+    ]);
+}
+
 
     public function add()
     {

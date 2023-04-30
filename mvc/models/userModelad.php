@@ -72,5 +72,4 @@ class userModelad
         return $result;
         
     }
-    
 }

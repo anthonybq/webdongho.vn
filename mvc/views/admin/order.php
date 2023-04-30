@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 <?php require APP_ROOT . '/views/admin/inc/head.php'; ?>
 
 <body>
@@ -9,6 +10,12 @@
             <section class="recent">
                 <div class="activity-grid">
                     <div class="activity-card">
+                        <form method="get" style="width:200px;">
+                            <span style="position:relative;">
+                                <input type="text" name="q" placeholder="Tìm kiếm..." style="padding-left:30px;">
+                                <i class="fa fa-search" aria-hidden="true" style="position:absolute; left:10px; top:8px;"></i>
+                            </span>
+                        </form>
                         <h3>Đơn hàng</h3>
                         <div class="table-responsive">
                             <table>
@@ -28,6 +35,10 @@
                                     <?php
                                     $count = 0;
                                     foreach ($data['orderList'] as $key => $value) {
+                                        // Ẩn tất cả đơn hàng ngoại trừ những đơn hàng có thông tin tìm kiếm
+                                        if(isset($_GET['q']) && (strpos($value['fullName'], $_GET['q']) === false)) {
+                                            continue;
+                                        }
                                     ?>
                                         <tr>
                                             <td><?= ++$count ?></td>

@@ -11,7 +11,17 @@
             <section class="recent">
                 <div class="activity-grid">
                     <div class="activity-card">
-                        <a href="<?= URL_ROOT . '/voucherManage/add' ?>" class="button right"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
+                        <div>
+                            <div class="right">
+                                <form method="get" style="width:200px;">
+                                    <span style="position:relative;">
+                                        <input type="text" name="q" placeholder="Tìm kiếm..." style="padding-left:30px;">
+                                        <i class="fa fa-search" aria-hidden="true" style="position:absolute; left:10px; top:8px;"></i>
+                                    </span>
+                                </form>
+                            </div>
+                            <a href="<?= URL_ROOT . '/voucherManage/add' ?>" class="button" style="margin: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</a>
+                        </div>
                         <h3>Danh sách Voucher</h3>
                         <div class="table-responsive">
                             <table>
@@ -31,6 +41,10 @@
                                     <?php
                                     $count = 0;
                                     foreach ($data['voucherList'] as $key => $value) {
+                                        // Ẩn tất cả voucher ngoại trừ những voucher có thông tin tìm kiếm
+                                        if(isset($_GET['q']) && (strpos($value['code'], $_GET['q']) === false && strpos($value['percentDiscount'], $_GET['q']) === false)) {
+                                            continue;
+                                        }
                                     ?>
                                         <tr>
                                             <td><?= ++$count ?></td>
