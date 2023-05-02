@@ -63,7 +63,7 @@ class cart extends ControllerBase
         }
         return $total;
     }
-
+    
     public function updateItemcart($productId, $qty)
     {
         $product = $this->model("productModel");

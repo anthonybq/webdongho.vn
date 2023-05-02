@@ -202,35 +202,32 @@
     ?>
   </div>
   <?php require APP_ROOT . '/views/client/inc/footer.php'; ?>
-  <script>
-    function update(e) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://localhost:"+location.port+"/Web_dong_ho/cart/updateItemcart/" + e.id + "/" + e.value, true);
-      xhr.onload = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.readyState === 4) {
-            var status = xhr.status;
-            if (status === 200) {
-              setTimeout(function() {
-                window.location.reload();
-              }, 500);
 
-            } else if (status === 501) {
-              alert('Số lượng sản phẩm không đủ để thêm vào giỏ hàng!');
-              // e.value = parseInt(e.value) - 1;
-              window.location.reload();
-            } else {
-              alert('Cập nhật giỏ hàng thất bại!');
-              window.location.reload();
-            }
-          }
-        }
-      };
-      xhr.onerror = function(e) {
-        console.error(xhr.statusText);
-      };
-      xhr.send(null);
-    }
+  <script>
+  function update(element) {
+    var productId = element.id;
+    var quantity = element.value;
+    var url = "<?php echo URL_ROOT . '/cart/updateItemcart/' ?>" + productId + '/' + quantity;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+      } else {
+        alert(data.message);
+      }
+
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    location.reload();
+  }
   </script>
+
 </body>
 </html>
